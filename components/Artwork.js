@@ -1,14 +1,17 @@
-import { TouchableOpacity, StyleSheet, Text, View, Image } from "react-native";
+import { TouchableOpacity, StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-export default function Artwork({image}) {
+export default function Artwork({ image }) {
+
   return (
     <View style={styles.container}>
       <Image
         style={styles.image}
         source={{
-            uri: image,
-          }}      />
+          uri: image,
+        }}
+        resizeMode="contain"
+      />
     </View>
   );
 }
@@ -24,7 +27,7 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 150,
-    height: 150,
+    width: "80%",
+    height: "100%",
   },
 });

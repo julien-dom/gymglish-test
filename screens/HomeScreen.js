@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, View, SafeAreaView, scrollView, ScrollView } from "react-native";
+import { Button, StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
 import Artwork from "../components/Artwork";
 import DropdownComponent from "../components/DropdownComponent"
 
@@ -11,7 +11,7 @@ export default function HomeScreen({ navigation }) {
 
   useEffect(() => {
     fetch(
-      "https://openaccess-api.clevelandart.org/api/artworks/?has_image=1&limit=10&female_artists=none"
+      "https://openaccess-api.clevelandart.org/api/artworks/?has_image=1&limit=50&female_artists=none"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -20,6 +20,7 @@ export default function HomeScreen({ navigation }) {
           let date = artwork.creation_date;
           let title = artwork.title;
           let image = artwork.images.web.url;
+          console.log(image)
           let technique = artwork.technique;
           let type = artwork.type;
           let description = artwork.wall_description;
@@ -71,6 +72,7 @@ export default function HomeScreen({ navigation }) {
     })),
   ];
 
+  
   return (
     <SafeAreaView style={styles.container}>
       <Text>Home Screen</Text>
@@ -81,7 +83,7 @@ export default function HomeScreen({ navigation }) {
       />
       <ScrollView>
         {filteredArtworks.map((data, i) => (
-          <Artwork key={i} image={data.image} />
+          <Artwork key={i} image={data.image} author={data.author} title={data.title}/>
         ))}
       </ScrollView>
     </SafeAreaView>
@@ -96,7 +98,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  scrollView: {
-    alignItems: 'center',
-  },
+
 });

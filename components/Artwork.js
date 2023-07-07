@@ -1,4 +1,5 @@
 import { TouchableOpacity, StyleSheet, Text, View, Image, Dimensions } from "react-native";
+import { Dropdown } from 'react-native-element-dropdown';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function Artwork({ image }) {

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
+import { useSelector } from 'react-redux';
+import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
 import Artwork from "../components/Artwork";
 import DropdownComponent from "../components/DropdownComponent"
 
 export default function HomeScreen({ navigation }) {
+  const favorites = useSelector((state) => state.favorites.value);
+
   const [artworksData, setArtworksData] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
@@ -72,6 +75,10 @@ export default function HomeScreen({ navigation }) {
     })),
   ];
 
+  const artworks = filteredArtworks.map((data, i) => {
+    const isFavorite = favorites.some(favorite => favorite.title === data.title);
+    return <Artwork key={i} props={data} isFavorite={isFavorite}/>
+})
   
   return (
     <SafeAreaView style={styles.container}>
@@ -82,9 +89,7 @@ export default function HomeScreen({ navigation }) {
         onDepartmentChange={handleDepartmentChange}
       />
       <ScrollView>
-        {filteredArtworks.map((data, i) => (
-          <Artwork key={i} image={data.image} author={data.author} title={data.title}/>
-        ))}
+        {artworks}
       </ScrollView>
     </SafeAreaView>
   );

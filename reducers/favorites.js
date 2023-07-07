@@ -11,6 +11,7 @@ export const favoriteSlice = createSlice({
   reducers: {
     addFavoriteToStore: (state, action) => {
       state.value.push(action.payload);
+      console.log('log reducer favorite', state.value)
     },
   },
 
@@ -30,4 +31,5 @@ export const {
   removeFavoriteFromStore,
   removeAllFavorites,
 } = favoriteSlice.actions;
+
 export default favoriteSlice.reducer;

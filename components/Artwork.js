@@ -1,16 +1,22 @@
-import { TouchableOpacity, StyleSheet, Text, View, Image } from "react-native";
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react";
+import { addFavoriteToStore, removeFavoriteFromStore } from '../reducers/favorites';
+import { TouchableOpacity, StyleSheet, Text, View, Image } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from 'react-redux';
 
-export default function Artwork({ image, author, title }) {
+export default function Artwork({ props }) {
   const [favorite, setFavorite] = useState(false);
   
   const dispatch = useDispatch();
 
   const handleFavorite = () => {
     setFavorite(!favorite);
+    if(props.isFavorite){
+      dispatch(removeFavoriteFromStore(props))
+    } else {
+      dispatch(addFavoriteToStore(props))
+    }
   };
 
   return (
@@ -18,13 +24,13 @@ export default function Artwork({ image, author, title }) {
       <Image
         style={styles.image}
         source={{
-          uri: image,
+          uri: props.image,
         }}
         resizeMode="contain"
       />
       <View style={styles.textContainer}>
-        <Text>{author}</Text>
-        <Text>{title}</Text>
+        <Text>{props.author}</Text>
+        <Text>{props.title}</Text>
       </View>
 
       <View style={styles.favoriteContainer}>

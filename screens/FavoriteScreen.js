@@ -1,14 +1,21 @@
 import { Button, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-
+import Artwork
+ from '../components/Artwork';
 export default function Favorite({ navigation }) {
 
- let favorites = <Text>No article</Text>;
+  const favorites = useSelector((state) => state.favorites.value);
 
+ let favoritesArtworks = <Text>No article</Text>;
+ if (favorites.length > 0) {
+  favoritesArtworks = favorites.map((data, i) => {
+    return <Artwork key={i} props={data} isFavorite />;
+  });
+}
  return (
    <SafeAreaView style={styles.container}>
      <Text>Favorite Screen</Text>
-     {favorites}
+     {favoritesArtworks}
    </SafeAreaView>
  );
 }

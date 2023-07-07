@@ -1,14 +1,15 @@
-import { Button, StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import Artwork from "../components/Artwork";
-import { removeAllFavorites } from "../reducers/favorites";
+import React from 'react';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import Artwork from '../components/Artwork';
+import { removeAllFavorites } from '../reducers/favorites';
 
 export default function FavoriteScreen({ navigation }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.value);
 
-  let favoritesArtworks = <Text>No favorite yet</Text>;
-  let removeFavorites
+  let favoritesArtworks = <Text>No favorites yet</Text>;
+  let removeFavorites;
   if (favorites.length > 0) {
     favoritesArtworks = favorites.map((data, i) => {
       return (
@@ -18,18 +19,21 @@ export default function FavoriteScreen({ navigation }) {
           author={data.author}
           title={data.title}
           isFavorite
+          removeFromFavorites={true}
         />
       );
     });
 
-    removeFavorites = <TouchableOpacity onPress={() => handleRemoveFavorites()}>
-    <Text>Remove all favorites</Text>
-    </TouchableOpacity>
-  }
+    const handleRemoveAllFavorites = () => {
+      dispatch(removeAllFavorites());
+    };
 
-  const handleRemoveFavorites = () => {
-    dispatch(removeAllFavorites())
-  };
+    removeFavorites = (
+      <TouchableOpacity onPress={handleRemoveAllFavorites}>
+        <Text>Remove all favorites</Text>
+      </TouchableOpacity>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -43,8 +47,8 @@ export default function FavoriteScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "pink",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: 'pink',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

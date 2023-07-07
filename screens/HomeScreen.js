@@ -85,9 +85,9 @@ export default function HomeScreen({ navigation }) {
   ];
 
   const artworks = filteredArtworks.map((data, i) => {
-    const isFavorite = favorites.some(
-      (favorite) => favorite.title === data.title
-    );
+    // const isFavorite = favorites.some(
+    //   (favorite) => favorite.title === data.title
+    // );
 
     const handleArtPress = () => {
       console.log("click art");
@@ -100,7 +100,7 @@ export default function HomeScreen({ navigation }) {
           image={data.image}
           author={data.author}
           title={data.title}
-          isFavorite={isFavorite}
+          // isFavorite={isFavorite}
         />
       </TouchableOpacity>
     );

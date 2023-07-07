@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
+import { useSelector } from "react-redux";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import Artwork from "../components/Artwork";
-import DropdownComponent from "../components/DropdownComponent"
+import DropdownComponent from "../components/DropdownComponent";
 
 export default function HomeScreen({ navigation }) {
   const favorites = useSelector((state) => state.favorites.value);
-
   const [artworksData, setArtworksData] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
@@ -23,7 +29,7 @@ export default function HomeScreen({ navigation }) {
           let date = artwork.creation_date;
           let title = artwork.title;
           let image = artwork.images.web.url;
-          console.log(image)
+          console.log(image);
           let technique = artwork.technique;
           let type = artwork.type;
           let description = artwork.wall_description;
@@ -55,7 +61,9 @@ export default function HomeScreen({ navigation }) {
 
   useEffect(() => {
     if (selectedDepartment) {
-      const filteredArtworks = artworksData.filter((data) => data.department === selectedDepartment);
+      const filteredArtworks = artworksData.filter(
+        (data) => data.department === selectedDepartment
+      );
       setFilteredArtworks(filteredArtworks);
     } else {
       setFilteredArtworks(artworksData);
@@ -66,9 +74,10 @@ export default function HomeScreen({ navigation }) {
     setSelectedDepartment(department);
   };
 
+  // Obtenir les catégories uniques et les mettre au format pour le dropdown
   const uniqueDepartments = [...new Set(departments.map((e) => e.department))];
   const departmentsDropdown = [
-    { label: 'All Departments', value: null },
+    { label: "All Departments", value: null },
     ...uniqueDepartments.map((data, i) => ({
       label: data,
       value: data,
@@ -76,10 +85,27 @@ export default function HomeScreen({ navigation }) {
   ];
 
   const artworks = filteredArtworks.map((data, i) => {
-    const isFavorite = favorites.some(favorite => favorite.title === data.title);
-    return <Artwork key={i} props={data} isFavorite={isFavorite}/>
-})
-  
+    const isFavorite = favorites.some(
+      (favorite) => favorite.title === data.title
+    );
+
+    const handleArtPress = () => {
+      console.log("click art");
+      navigation.navigate('Artwork', {...data})
+    };
+
+    return (
+      <TouchableOpacity key={i} onPress={() => handleArtPress()}>
+        <Artwork
+          image={data.image}
+          author={data.author}
+          title={data.title}
+          isFavorite={isFavorite}
+        />
+      </TouchableOpacity>
+    );
+  });
+
   return (
     <SafeAreaView style={styles.container}>
       <Text>Home Screen</Text>
@@ -88,9 +114,7 @@ export default function HomeScreen({ navigation }) {
         selectedDepartment={selectedDepartment}
         onDepartmentChange={handleDepartmentChange}
       />
-      <ScrollView>
-        {artworks}
-      </ScrollView>
+      <ScrollView>{artworks}</ScrollView>
     </SafeAreaView>
   );
 }
@@ -102,6 +126,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
-
 });

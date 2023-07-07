@@ -13,17 +13,18 @@ export const favoriteSlice = createSlice({
       state.value.push(action.payload);
       console.log('log reducer favorite', state.value)
     },
-  },
 
     removeFavoriteFromStore: (state, action) => {
-    state.value = state.value.filter(
-      (artwork) => artwork.title !== action.payload.title
-    );
+      state.value = state.value.filter(
+        (artwork) => artwork.title !== action.payload.title
+      );
+    },
+  
+      removeAllFavorites: (state) => {
+      state.value = [];
+    },
   },
 
-    removeAllFavorites: (state) => {
-    state.value = [];
-  },
 });
 
 export const {

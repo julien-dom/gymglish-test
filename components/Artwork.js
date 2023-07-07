@@ -5,32 +5,37 @@ import { TouchableOpacity, StyleSheet, Text, View, Image } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-export default function Artwork({ props }) {
-  const [favorite, setFavorite] = useState(false);
+export default function Artwork({ image, author, title, isFavorite, type, technique, description }) {
   
   const dispatch = useDispatch();
 
   const handleFavorite = () => {
-    setFavorite(!favorite);
-    if(props.isFavorite){
-      dispatch(removeFavoriteFromStore(props))
+    if(isFavorite){
+      dispatch(removeFavoriteFromStore({ title }))
     } else {
-      dispatch(addFavoriteToStore(props))
+      dispatch(addFavoriteToStore({ image, author, title }))
     }
   };
 
+  let iconStyle = {};
+  if (isFavorite) {
+    iconStyle = { 'color': '#E9BE59' };
+  }
   return (
     <View style={styles.card}>
       <Image
         style={styles.image}
         source={{
-          uri: props.image,
+          uri: image,
         }}
         resizeMode="contain"
       />
       <View style={styles.textContainer}>
-        <Text>{props.author}</Text>
-        <Text>{props.title}</Text>
+        <Text>{author}</Text>
+        <Text>{title}</Text>
+        {/* <Text>{technique}</Text>
+        <Text>{type}</Text>
+        <Text>{description}</Text> */}
       </View>
 
       <View style={styles.favoriteContainer}>
@@ -39,8 +44,7 @@ export default function Artwork({ props }) {
         <FontAwesomeIcon
           icon={faHeart}
           size={20}
-          color={favorite ? "#2D0861" : "#E9D3F1"}
-          style={styles.icon}
+          style={iconStyle}
         />
       </TouchableOpacity>
       </View>
@@ -72,11 +76,8 @@ const styles = StyleSheet.create({
   },
 
   favoriteContainer:{
-    isplay: "flex",
+    display: "flex",
     flexDirection: "row",
   },
 
-  icon: {
-    alignSelf: 'start',
-  }
 });

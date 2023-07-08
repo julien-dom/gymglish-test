@@ -1,7 +1,15 @@
-import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
+import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 
-export default function Header () {
+export default function Header() {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.titleBox}>
@@ -10,33 +18,34 @@ export default function Header () {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-    headerContainer: {
-      height: Dimensions.get('window').height * 0.07, 
-      width: Dimensions.get('window').width * 1,
-      backgroundColor: 'white',
-      borderBottomColor: 'black',
-      borderBottomWidth: 0.3,
-      padding: 10
-    },
+  headerContainer: {
+    height: Dimensions.get("window").height * 0.07,
+    width: Dimensions.get("window").width * 1,
+    backgroundColor: "white",
+    borderBottomColor: "black",
+    borderBottomWidth: 0.3,
+    padding: 10,
+    marginBottom: 5
+  },
 
-    titleBox:{
-        display:'flex',
-        flexDirection: 'row',
-        alignItems:'flex-end',
-    },
+  titleBox: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "flex-end",
+  },
 
-    headerLetter: {
-        fontFamily: 'NotoSansMono-Bold',
-        fontSize: 48,
-        letterSpacing: 1.5
-    }, 
+  headerLetter: {
+    fontFamily: "NotoSansMono-Bold",
+    fontSize: 48,
+    letterSpacing: 1.5,
+  },
 
-    headerTitle: {
-        fontFamily: 'NotoSansMono-Bold',
-        fontSize: 24,
-        letterSpacing: 1.5
-    }
-  });
+  headerTitle: {
+    fontFamily: "NotoSansMono-Bold",
+    fontSize: 24,
+    letterSpacing: 1.5,
+  },
+});

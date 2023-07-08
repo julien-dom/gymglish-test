@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   StyleSheet,
-  Text,
-  View,
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
 } from "react-native";
 import Artwork from "../components/Artwork";
 import DropdownComponent from "../components/DropdownComponent";
@@ -91,9 +89,12 @@ export default function HomeScreen({ navigation }) {
     //   (favorite) => favorite.title === data.title
     // );
     const formattedAuthor = data.author.replace(/\([^()]*\)/g, "").trim();
+    const formatedTitle =
+      data.title.length > 50 ? data.title.slice(0, 50) + "..." : data.title;
+
     const handleArtPress = () => {
       console.log("click art");
-      navigation.navigate('Artwork', {...data})
+      navigation.navigate("Artwork", { ...data });
     };
 
     return (
@@ -101,7 +102,7 @@ export default function HomeScreen({ navigation }) {
         <Artwork
           image={data.image}
           author={formattedAuthor}
-          title={data.title}
+          title={formatedTitle}
           cardStyle={styles.homeCard}
           imageStyle={styles.homeImage}
           textStyle={styles.homeText}
@@ -123,7 +124,9 @@ export default function HomeScreen({ navigation }) {
         selectedDepartment={selectedDepartment}
         onDepartmentChange={handleDepartmentChange}
       />
-      <ScrollView contentContainerStyle={styles.homeArtworksBox}>{artworks}</ScrollView>
+      <ScrollView contentContainerStyle={styles.homeArtworksBox}>
+        {artworks}
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -132,57 +135,49 @@ const styles = StyleSheet.create({
   homeContainer: {
     backgroundColor: "white",
     alignItems: "center",
-    // justifyContent: "center",
   },
 
-  
   homeCard: {
-    display: 'flex',
-    flexDirection: 'column',
-    borderColor: 'black',
-    borderWidth: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: Dimensions.get('window').width * 0.49, 
-    aspectRatio: 0.8, // ration largeur/hauteur de 1 pour card carrée
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+    width: Dimensions.get("window").width * 0.49,
+    aspectRatio: 0.78, 
     margin: 0.5,
-    padding: 5
+    padding: 5,
   },
 
-  homeArtworksBox : {
+  homeArtworksBox: {
     backgroundColor: "white",
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
 
   homeImage: {
-    width: '90%',
-    aspectRatio: 1,  
+    width: "95%",
+    aspectRatio: 1,
     borderRadius: 10,
-    resizeMode: 'cover'
+    resizeMode: "cover",
+    marginBottom: 5,
   },
 
-  homeText:{
+  homeTextContainer: {
+    width: "95%",
+  },
+
+  authorText: {
+    fontFamily: "NotoSansMono-Bold",
     fontSize: 12,
-    fontFamily: 'NotoSansMono-Regular',
   },
 
-  homeTextContainer:{
-    width: '85%',
-  },
-
-  authorText:{
-    fontFamily: 'NotoSansMono-Bold',
+  titleText: {
     fontSize: 12,
-    marginBottom: 0
-  },
-
-  titleText:{
-    fontSize: 12
+    fontFamily: "NotoSansMono-Regular",
   },
 
   homeTitle: {
-    fontFamily: 'NotoSansMono-Bold',
-  }
+    fontFamily: "NotoSansMono-Bold",
+  },
 });

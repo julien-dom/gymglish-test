@@ -54,7 +54,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     padding: 10,
+    marginBottom: 5
   },
+
   dropdown: {
     height: 50,
     width: 200,
@@ -64,9 +66,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     fontFamily:'NotoSansMono-Regular',
   },
+
   icon: {
     marginRight: 5,
   },
+
   label: {
     position: 'absolute',
     backgroundColor: 'white',
@@ -77,24 +81,30 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily:'NotoSansMono-Regular'
   },
+
   placeholderStyle: {
     fontSize: 14,
     fontFamily:'NotoSansMono-Regular'
   },
+
   selectedTextStyle: {
     fontSize: 16,
     fontFamily:'NotoSansMono-Regular'
   },
+
   iconStyle: {
     width: 20,
     height: 20,
   },
+
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
     fontFamily:'NotoSansMono-Regular'
   },
+
   inputTextStyle: {
-    fontFamily: "Greycliff-Regular",
+    fontFamily: "NotoSansMono-Regular",
   },
+
 });

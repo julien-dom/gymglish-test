@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import Artwork from '../components/Artwork';
 import ButtonComponent from '../components/ButtonComponent';
 import Header from "../components/Header";
@@ -42,9 +42,6 @@ export default function FavoriteScreen({  navigation }) {
     };
 
     removeFavorites = (
-      // <TouchableOpacity onPress={handleRemoveAllFavorites}>
-      //   <Text>Remove all favorites</Text>
-      // </TouchableOpacity>
       <ButtonComponent onPress={handleRemoveAllFavorites} buttonText='Delete all Favorites'/>
     );
 

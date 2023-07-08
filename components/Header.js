@@ -13,8 +13,7 @@ export default function Header() {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.titleBox}>
-        <Text style={styles.headerLetter}>W</Text>
-        <Text style={styles.headerTitle}>omen In Art</Text>
+        <Text style={styles.headerTitle}>Women In Art</Text>
       </View>
     </View>
   );
@@ -22,9 +21,11 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    height: Dimensions.get("window").height * 0.07,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    height: Dimensions.get("window").height * 0.1,
     width: Dimensions.get("window").width * 1,
-    backgroundColor: "white",
     borderBottomColor: "black",
     borderBottomWidth: 0.3,
     padding: 10,
@@ -37,15 +38,13 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
 
-  headerLetter: {
-    fontFamily: "NotoSansMono-Bold",
-    fontSize: 48,
-    letterSpacing: 1.5,
-  },
-
   headerTitle: {
     fontFamily: "NotoSansMono-Bold",
     fontSize: 24,
     letterSpacing: 1.5,
   },
+
+  textAlignBottom: {
+    textAlignVertical: 'bottom',
+  }
 });

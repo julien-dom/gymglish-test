@@ -1,16 +1,10 @@
-import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faHeart, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
-import { removeFavoriteFromStore } from "../reducers/favorites";
-import { Image } from "expo-image";
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faHeart, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import { removeFavoriteFromStore } from '../reducers/favorites';
+import { Image } from 'expo-image';
 
 export default function Artwork({
   image,
@@ -29,7 +23,7 @@ export default function Artwork({
   description,
   department,
   funFact,
-  showLabels = true,
+  showLabels = true
 }) {
   const dispatch = useDispatch();
 
@@ -75,26 +69,19 @@ export default function Artwork({
         {description && (
           <View style={styles.textBox}>
             {showLabels && <Text style={styles.label}>Description</Text>}
-            <Text style={[styles.text, textStyle]}>
-              {description.replace(/<[^>]+>/g, "")}
-            </Text>
+            <Text style={[styles.text, textStyle]}>{description.replace(/<[^>]+>/g, '')}</Text>
           </View>
         )}
         {funFact && (
           <View style={styles.textBox}>
             {showLabels && <Text style={styles.label}>Fun Fact</Text>}
-            <Text style={[styles.text, textStyle]}>
-              {funFact.replace(/<[^>]+>/g, "")}
-            </Text>
+            <Text style={[styles.text, textStyle]}>{funFact.replace(/<[^>]+>/g, '')}</Text>
           </View>
         )}
       </ScrollView>
 
       {isFavorite && removeFromFavorites && (
-        <TouchableOpacity
-          onPress={handleRemoveFavorite}
-          style={styles.removeFavoriteButton}
-        >
+        <TouchableOpacity onPress={handleRemoveFavorite} style={styles.removeFavoriteButton}>
           <FontAwesomeIcon icon={faTimes} size={18} color="#E9BE59" />
         </TouchableOpacity>
       )}
@@ -104,9 +91,9 @@ export default function Artwork({
 
 const styles = StyleSheet.create({
   textContainer: {
-    display: "flex",
-    flexDirection: "column",
-    flexWrap: "wrap",
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
   },
 
   textBox: {
@@ -114,11 +101,11 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    fontFamily: "NotoSansMono-Bold",
+    fontFamily: 'NotoSansMono-Bold',
   },
 
   removeFavoriteButton: {
-    position: "absolute",
+    position: 'absolute',
     top: 5,
     right: 5,
   },

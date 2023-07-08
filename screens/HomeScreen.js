@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     width: "95%",
     aspectRatio: 1,
     borderRadius: 10,
-    resizeMode: "cover",
+    contentFit: "cover",
     marginBottom: 5,
   },
 

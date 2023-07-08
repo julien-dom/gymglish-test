@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     width: "100%",
     aspectRatio: 1, // conserve ratio image
     marginBottom: 5,
-    resizeMode: "contain",
+    contentFit: "contain",
   },
 
   artworkText: {

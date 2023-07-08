@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { addFavoriteToStore, removeFavoriteFromStore } from "../reducers/favorites";
 import { Button } from 'react-native-paper';
+import ButtonComponent from "../components/ButtonComponent";
 
 export default function ArtworkScreen({ navigation, route: { params: data } }) {
   console.log("paramsdata", data);
@@ -28,9 +29,12 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
   if (isFavorite) {
     iconStyle = { color: "#E9BE59" };
   }
+
+  let buttonText = isFavorite ? 'Remove from favorites' : 'Add to favorites';
+
   return (
-    <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+    <SafeAreaView style={styles.artworkContainer}>
+      <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.angleLeft}>
         <FontAwesome name={"angle-left"} size={40} color={"black"} />
       </TouchableOpacity>
       <Text>Artwork Screen</Text>
@@ -49,37 +53,45 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
         textContainerStyle={styles.artworkTextContainer}
         isFavorite={isFavorite}
       />
-      <View style={styles.favoriteContainer}>
+      {/* <View style={styles.favoriteContainer}>
         <Text>Add to favorite</Text>
         <TouchableOpacity onPress={() => handleFavorite()}>
           <FontAwesomeIcon icon={faHeart} size={20} style={iconStyle} />
         </TouchableOpacity>
-      </View>
+      </View> */}
+      <ButtonComponent buttonText={buttonText}
+  isFavorite={isFavorite}
+  onPress={handleFavorite}/>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+    artworkContainer: {
     flex: 1,
     alignItems: "center",
     backgroundColor: "white",
     // justifyContent: "center",
   },
 
+  angleLeft:{
+    alignSelf: 'flex-start',
+    marginLeft: 10
+  },
+
   artworkCard: {
     display: "flex",
     flexDirection: "column",
-    borderColor: "black",
-    borderWidth: 1,
+    // borderColor: "black",
+    // borderWidth: 1,
     backgroundColor: "white",
     alignItems: "center",
     // justifyContent: "center",
-    width: Dimensions.get("window").width * 0.99,
+    width: Dimensions.get("window").width * 1,
     // aspectRatio: 1, // ration largeur/hauteur de 1 pour card carrée
     height: "auto",
     maxHeight: '80%',
-    margin: 1,
+    marginBottom: 10,
     padding: 10
   },
 

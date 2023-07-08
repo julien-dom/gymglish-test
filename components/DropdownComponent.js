@@ -11,7 +11,7 @@ export default function DropdownComponent ({ departments, selectedDepartment, on
   const renderLabel = () => {
     if (value || isFocus) {
       return (
-        <Text style={[styles.label, isFocus && { color: 'blue' }]}>
+        <Text style={[styles.label, isFocus && { color: '#E9BE59' }]}>
           Departments & Collections
         </Text>
       );
@@ -29,7 +29,7 @@ export default function DropdownComponent ({ departments, selectedDepartment, on
     <View style={styles.container}>
       {renderLabel()}
       <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+        style={[styles.dropdown, isFocus && { borderColor: '#E9BE59' }]}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}

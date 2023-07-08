@@ -113,20 +113,20 @@ export default function HomeScreen({ navigation }) {
   });
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.homeContainer}>
       <Text>Home Screen</Text>
       <DropdownComponent
         departments={departmentsDropdown}
         selectedDepartment={selectedDepartment}
         onDepartmentChange={handleDepartmentChange}
       />
-      <ScrollView contentContainerStyle={styles.artworksBox}>{artworks}</ScrollView>
+      <ScrollView contentContainerStyle={styles.homeArtworksBox}>{artworks}</ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  homeContainer: {
     backgroundColor: "yellow",
     alignItems: "center",
     // justifyContent: "center",
@@ -146,11 +146,10 @@ const styles = StyleSheet.create({
     margin: 1,
   },
 
-  artworksBox : {
+  homeArtworksBox : {
     backgroundColor: "white",
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
   },
 
   homeImage: {

@@ -1,3 +1,9 @@
+//ajout de la typo Graycliff-CT
+import React, { useCallback } from 'react';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+SplashScreen.preventAutoHideAsync();
+
 import { StatusBar } from "expo-status-bar";
 import HomeScreen from "./screens/HomeScreen";
 import FavoriteScreen from "./screens/FavoriteScreen";
@@ -46,8 +52,25 @@ const TabNavigator = () => {
 };
 
 export default function App() {
+    //Ajout de la typo NotoSansMono
+    const [fontsLoaded] = useFonts({
+      'NotoSansMono-Bold': require('./assets/fonts/NotoSansMono-Bold.ttf'),
+      'NotoSansMono-Regular': require('./assets/fonts/NotoSansMono-Regular.ttf'),
+      'NotoSansMono-Light': require('./assets/fonts/NotoSansMono-Light.ttf'),
+    });
+    const onLayoutRootView = useCallback(async () => {
+      if (fontsLoaded) {
+        await SplashScreen.hideAsync();
+      }
+    }, [fontsLoaded]);
+  
+    if (!fontsLoaded) {
+      return null;
+    }
   return (
     <Provider store={store}>
+      <View onLayout={onLayoutRootView}></View>
+
       <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="TabNavigator" component={TabNavigator} initialParams={{ initialScreen: 'Home' }}/>

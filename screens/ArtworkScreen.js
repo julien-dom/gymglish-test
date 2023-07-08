@@ -2,10 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Dim
 import { useDispatch, useSelector } from "react-redux";
 import Artwork from "../components/Artwork";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { addFavoriteToStore, removeFavoriteFromStore } from "../reducers/favorites";
-import { Button } from 'react-native-paper';
 import ButtonComponent from "../components/ButtonComponent";
 
 export default function ArtworkScreen({ navigation, route: { params: data } }) {
@@ -30,7 +27,7 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
     iconStyle = { color: "#E9BE59" };
   }
 
-  let buttonText = isFavorite ? 'Remove from favorites' : 'Add to favorites';
+  let buttonText = isFavorite ? 'Remove from Favorites' : 'Add to Favorites';
 
   return (
     <SafeAreaView style={styles.artworkContainer}>
@@ -105,9 +102,11 @@ const styles = StyleSheet.create({
 
   artworkText: {
     marginBottom: 5,
+    fontFamily: 'NotoSansMono-Regular'
+
   },
 
   artworkTextContainer: {
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
   },
 });

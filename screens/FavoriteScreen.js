@@ -44,7 +44,7 @@ export default function FavoriteScreen({  navigation }) {
       // <TouchableOpacity onPress={handleRemoveAllFavorites}>
       //   <Text>Remove all favorites</Text>
       // </TouchableOpacity>
-      <ButtonComponent onPress={handleRemoveAllFavorites} buttonText='Delete from Favorites'/>
+      <ButtonComponent onPress={handleRemoveAllFavorites} buttonText='Delete all Favorites'/>
     );
 
 

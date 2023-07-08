@@ -105,7 +105,7 @@ export default function HomeScreen({ navigation }) {
           imageStyle={styles.homeImage}
           textStyle={styles.homeText}
           textContainerStyle={styles.homeTextContainer}
-
+          showLabels={false}
           // isFavorite={isFavorite}
         />
       </TouchableOpacity>
@@ -114,7 +114,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.homeContainer}>
-      <Text>Home Screen</Text>
+      <Text style={styles.homeTitle}>Home Screen</Text>
       <DropdownComponent
         departments={departmentsDropdown}
         selectedDepartment={selectedDepartment}
@@ -161,10 +161,15 @@ const styles = StyleSheet.create({
 
   homeText:{
     fontSize: 12,
+    fontFamily: 'NotoSansMono-Regular',
+
   },
 
   homeTextContainer:{
     width: '75%',
   },
 
+  homeTitle: {
+    fontFamily: 'NotoSansMono-Bold',
+  }
 });

@@ -5,14 +5,28 @@ import { faHeart, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { removeFavoriteFromStore } from '../reducers/favorites';
 
-export default function Artwork({ image, author, title, isFavorite, removeFromFavorites, cardStyle, imageStyle, textStyle, textContainerStyle, technique, type, description, department, funFact, showLabels = true }) {
+export default function Artwork({
+  image,
+  author,
+  title,
+  isFavorite,
+  removeFromFavorites,
+  cardStyle,
+  imageStyle,
+  textStyle,
+  textContainerStyle,
+  technique,
+  type,
+  description,
+  department,
+  funFact,
+  showLabels = true
+}) {
   const dispatch = useDispatch();
 
   const handleRemoveFavorite = () => {
     dispatch(removeFavoriteFromStore({ title }));
   };
-
-
 
   return (
     <View style={[styles.card, cardStyle]}>
@@ -24,50 +38,47 @@ export default function Artwork({ image, author, title, isFavorite, removeFromFa
       />
       <ScrollView style={[styles.textContainer, textContainerStyle]}>
         <View style={styles.textBox}>
-          {showLabels && (<Text style={styles.label}>Author</Text>)}
+          {showLabels && <Text style={styles.label}>Author</Text>}
           <Text style={[styles.text, textStyle]}>{author}</Text>
         </View>
         <View style={styles.textBox}>
-        {showLabels && (<Text style={styles.label}>Title</Text>)}
+          {showLabels && <Text style={styles.label}>Title</Text>}
           <Text style={[styles.text, textStyle]}>{title}</Text>
-        </View>        
+        </View>
         {technique && (
           <View style={styles.textBox}>
-          {showLabels && (<Text style={styles.label}>Technique</Text>)}
+            {showLabels && <Text style={styles.label}>Technique</Text>}
             <Text style={[styles.text, textStyle]}>{technique}</Text>
           </View>
         )}
         {type && (
           <View style={styles.textBox}>
-          {showLabels && (<Text style={styles.label}>Type</Text>)}
+            {showLabels && <Text style={styles.label}>Type</Text>}
             <Text style={[styles.text, textStyle]}>{type}</Text>
           </View>
         )}
         {department && (
           <View style={styles.textBox}>
-          {showLabels && (<Text style={styles.label}>Department</Text>)}
+            {showLabels && <Text style={styles.label}>Department</Text>}
             <Text style={[styles.text, textStyle]}>{department}</Text>
           </View>
         )}
         {description && (
           <View style={styles.textBox}>
-          {showLabels && (<Text style={styles.label}>Description</Text>)}
-            <Text style={[styles.text, textStyle]}>{description}</Text>
+            {showLabels && <Text style={styles.label}>Description</Text>}
+            <Text style={[styles.text, textStyle]}>{description.replace(/<[^>]+>/g, '')}</Text>
           </View>
         )}
         {funFact && (
           <View style={styles.textBox}>
-          {showLabels && (<Text style={styles.label}>Fun Fact</Text>)}
-            <Text style={[styles.text, textStyle]}>{funFact}</Text>
+            {showLabels && <Text style={styles.label}>Fun Fact</Text>}
+            <Text style={[styles.text, textStyle]}>{funFact.replace(/<[^>]+>/g, '')}</Text>
           </View>
         )}
       </ScrollView>
 
       {isFavorite && removeFromFavorites && (
-        <TouchableOpacity
-          onPress={handleRemoveFavorite}
-          style={styles.removeFavoriteButton}
-        >
+        <TouchableOpacity onPress={handleRemoveFavorite} style={styles.removeFavoriteButton}>
           <FontAwesomeIcon icon={faTimes} size={18} color="#E9BE59" />
         </TouchableOpacity>
       )}
@@ -79,12 +90,11 @@ const styles = StyleSheet.create({
   textContainer: {
     display: 'flex',
     flexDirection: 'column',
-    flexWrap: 'wrap', // Allow text to wrap onto the next line
-
+    flexWrap: 'wrap',
   },
 
   textBox: {
-    marginBottom: 5
+    marginBottom: 5,
   },
 
   label: {
@@ -97,5 +107,7 @@ const styles = StyleSheet.create({
     right: 5,
   },
 
-
+  text: {
+    fontSize: 16,
+  },
 });

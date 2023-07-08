@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import Artwork from "../components/Artwork";
+import Header from "../components/Header";
+
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { addFavoriteToStore, removeFavoriteFromStore } from "../reducers/favorites";
 import ButtonComponent from "../components/ButtonComponent";
@@ -31,10 +33,10 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
 
   return (
     <SafeAreaView style={styles.artworkContainer}>
+    <Header />
       <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.angleLeft}>
         <FontAwesome name={"angle-left"} size={40} color={"black"} />
       </TouchableOpacity>
-      <Text>Artwork Screen</Text>
       <Artwork
         image={data.image}
         author={data.author}
@@ -97,13 +99,11 @@ const styles = StyleSheet.create({
     aspectRatio: 1, // conserve ratio image
     marginBottom: 5,
     resizeMode: "contain",
-
   },
 
   artworkText: {
     marginBottom: 5,
     fontFamily: 'NotoSansMono-Regular'
-
   },
 
   artworkTextContainer: {

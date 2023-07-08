@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import Artwork from "../components/Artwork";
 import DropdownComponent from "../components/DropdownComponent";
+import Header from "../components/Header";
 
 export default function HomeScreen({ navigation }) {
   const favorites = useSelector((state) => state.favorites.value);
@@ -104,6 +105,8 @@ export default function HomeScreen({ navigation }) {
           cardStyle={styles.homeCard}
           imageStyle={styles.homeImage}
           textStyle={styles.homeText}
+          authorStyle={styles.authorText} // Add artistStyle prop
+          titleStyle={styles.titleText} // Add titleStyle prop
           textContainerStyle={styles.homeTextContainer}
           showLabels={false}
           // isFavorite={isFavorite}
@@ -114,7 +117,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.homeContainer}>
-      <Text style={styles.homeTitle}>Home Screen</Text>
+      <Header />
       <DropdownComponent
         departments={departmentsDropdown}
         selectedDepartment={selectedDepartment}
@@ -127,7 +130,7 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   homeContainer: {
-    backgroundColor: "yellow",
+    backgroundColor: "white",
     alignItems: "center",
     // justifyContent: "center",
   },
@@ -142,8 +145,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: Dimensions.get('window').width * 0.49, 
-    aspectRatio: 1, // ration largeur/hauteur de 1 pour card carrée
-    margin: 1,
+    aspectRatio: 0.8, // ration largeur/hauteur de 1 pour card carrée
+    margin: 0.5,
+    padding: 5
   },
 
   homeArtworksBox : {
@@ -153,8 +157,8 @@ const styles = StyleSheet.create({
   },
 
   homeImage: {
-    width: '75%',
-    height: '75%',
+    width: '90%',
+    aspectRatio: 1,  
     borderRadius: 10,
     resizeMode: 'cover'
   },
@@ -162,11 +166,20 @@ const styles = StyleSheet.create({
   homeText:{
     fontSize: 12,
     fontFamily: 'NotoSansMono-Regular',
-
   },
 
   homeTextContainer:{
-    width: '75%',
+    width: '85%',
+  },
+
+  authorText:{
+    fontFamily: 'NotoSansMono-Bold',
+    fontSize: 12,
+    marginBottom: 0
+  },
+
+  titleText:{
+    fontSize: 12
   },
 
   homeTitle: {

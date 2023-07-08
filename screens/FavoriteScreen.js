@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
 import Artwork from '../components/Artwork';
-import { removeAllFavorites } from '../reducers/favorites';
 import ButtonComponent from '../components/ButtonComponent';
+import Header from "../components/Header";
+import { removeAllFavorites } from '../reducers/favorites';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function FavoriteScreen({  navigation }) {
   const dispatch = useDispatch();
@@ -52,8 +53,7 @@ export default function FavoriteScreen({  navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Favorite Screen</Text>
-      
+            <Header />      
       <ScrollView contentContainerStyle={styles.favoriteArtworksBox}>{favoritesArtworks}</ScrollView>
       {removeFavorites}
     </SafeAreaView>

@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHeart, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { removeFavoriteFromStore } from '../reducers/favorites';
+import { Image } from 'expo-image';
 
 export default function Artwork({
   image,
@@ -14,6 +15,8 @@ export default function Artwork({
   cardStyle,
   imageStyle,
   textStyle,
+  authorStyle,
+  titleStyle,
   textContainerStyle,
   technique,
   type,
@@ -39,11 +42,11 @@ export default function Artwork({
       <ScrollView style={[styles.textContainer, textContainerStyle]}>
         <View style={styles.textBox}>
           {showLabels && <Text style={styles.label}>Author</Text>}
-          <Text style={[styles.text, textStyle]}>{author}</Text>
+          <Text style={[styles.text, textStyle, authorStyle]}>{author}</Text>
         </View>
         <View style={styles.textBox}>
           {showLabels && <Text style={styles.label}>Title</Text>}
-          <Text style={[styles.text, textStyle]}>{title}</Text>
+          <Text style={[styles.text, textStyle, titleStyle]}>{title}</Text>
         </View>
         {technique && (
           <View style={styles.textBox}>

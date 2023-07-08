@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     top: 8,
     zIndex: 999,
     paddingHorizontal: 8,
-    fontSize: 14,
+    fontSize: 12,
     fontFamily:'NotoSansMono-Regular'
   },
   placeholderStyle: {

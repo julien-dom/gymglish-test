@@ -18,6 +18,9 @@ export default function FavoriteScreen({ navigation }) {
           image={data.image}
           author={data.author}
           title={data.title}
+          cardStyle={styles.favoriteCard}
+          imageStyle={styles.favoriteImage}
+          textStyle={styles.favoriteText} 
           isFavorite
           removeFromFavorites={true}
         />

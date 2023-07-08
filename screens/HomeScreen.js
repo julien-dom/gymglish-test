@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Dimensions
 } from "react-native";
 import Artwork from "../components/Artwork";
 import DropdownComponent from "../components/DropdownComponent";
@@ -88,7 +89,7 @@ export default function HomeScreen({ navigation }) {
     // const isFavorite = favorites.some(
     //   (favorite) => favorite.title === data.title
     // );
-
+    const formattedAuthor = data.author.replace(/\([^()]*\)/g, "").trim();
     const handleArtPress = () => {
       console.log("click art");
       navigation.navigate('Artwork', {...data})
@@ -98,8 +99,13 @@ export default function HomeScreen({ navigation }) {
       <TouchableOpacity key={i} onPress={() => handleArtPress()}>
         <Artwork
           image={data.image}
-          author={data.author}
+          author={formattedAuthor}
           title={data.title}
+          cardStyle={styles.homeCard}
+          imageStyle={styles.homeImage}
+          textStyle={styles.homeText}
+          textContainerStyle={styles.homeTextContainer}
+
           // isFavorite={isFavorite}
         />
       </TouchableOpacity>
@@ -114,16 +120,52 @@ export default function HomeScreen({ navigation }) {
         selectedDepartment={selectedDepartment}
         onDepartmentChange={handleDepartmentChange}
       />
-      <ScrollView>{artworks}</ScrollView>
+      <ScrollView contentContainerStyle={styles.artworksBox}>{artworks}</ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "yellow",
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
   },
+
+  
+  homeCard: {
+    display: 'flex',
+    flexDirection: 'column',
+    borderColor: 'black',
+    borderWidth: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: Dimensions.get('window').width * 0.49, 
+    aspectRatio: 1, // ration largeur/hauteur de 1 pour card carrée
+    margin: 1,
+  },
+
+  artworksBox : {
+    backgroundColor: "white",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+
+  homeImage: {
+    width: '75%',
+    height: '75%',
+    borderRadius: 10,
+    resizeMode: 'cover'
+  },
+
+  homeText:{
+    fontSize: 12,
+  },
+
+  homeTextContainer:{
+    width: '75%',
+  },
+
 });

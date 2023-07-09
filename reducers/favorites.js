@@ -11,7 +11,7 @@ export const favoriteSlice = createSlice({
   reducers: {
     addFavoriteToStore: (state, action) => {
       state.value.push(action.payload);
-      console.log('log reducer favorite', state.value)
+      console.log("log reducer favorite", state.value);
     },
 
     removeFavoriteFromStore: (state, action) => {
@@ -19,12 +19,11 @@ export const favoriteSlice = createSlice({
         (artwork) => artwork.title !== action.payload.title
       );
     },
-  
-      removeAllFavorites: (state) => {
+
+    removeAllFavorites: (state) => {
       state.value = [];
     },
   },
-
 });
 
 export const {

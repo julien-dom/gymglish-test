@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Dropdown } from 'react-native-element-dropdown';
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { Dropdown } from "react-native-element-dropdown";
 
-
-export default function DropdownComponent ({ departments, selectedDepartment, onDepartmentChange }) {
-
+export default function DropdownComponent({
+  departments,
+  selectedDepartment,
+  onDepartmentChange,
+}) {
   const [value, setValue] = useState(selectedDepartment);
   const [isFocus, setIsFocus] = useState(false);
 
   const renderLabel = () => {
     if (value || isFocus) {
       return (
-        <Text style={[styles.label, isFocus && { color: '#E9BE59' }]}>
+        <Text style={[styles.label, isFocus && { color: "#E9BE59" }]}>
           Departments & Collections
         </Text>
       );
@@ -29,7 +31,13 @@ export default function DropdownComponent ({ departments, selectedDepartment, on
     <View style={styles.container}>
       {renderLabel()}
       <Dropdown
-        style={[styles.dropdown, isFocus && { fontFamily:'NotoSansMono-Regular', borderColor: '#E9BE59' }]}
+        style={[
+          styles.dropdown,
+          isFocus && {
+            fontFamily: "NotoSansMono-Regular",
+            borderColor: "#E9BE59",
+          },
+        ]}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
@@ -39,7 +47,7 @@ export default function DropdownComponent ({ departments, selectedDepartment, on
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={!isFocus ? 'Select a Department' : '...'}
+        placeholder={!isFocus ? "Select a Department" : "..."}
         searchPlaceholder="Search..."
         value={value}
         onFocus={() => setIsFocus(true)}
@@ -48,23 +56,23 @@ export default function DropdownComponent ({ departments, selectedDepartment, on
       />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     padding: 10,
-    marginBottom: 5
+    marginBottom: 5,
   },
 
   dropdown: {
     height: 50,
     width: 200,
-    borderColor: 'gray',
+    borderColor: "gray",
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
-    fontFamily:'NotoSansMono-Regular',
+    fontFamily: "NotoSansMono-Regular",
   },
 
   icon: {
@@ -72,24 +80,24 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    position: 'absolute',
-    backgroundColor: 'white',
+    position: "absolute",
+    backgroundColor: "white",
     left: 22,
     top: 8,
     zIndex: 999,
     paddingHorizontal: 8,
     fontSize: 12,
-    fontFamily:'NotoSansMono-Regular'
+    fontFamily: "NotoSansMono-Regular",
   },
 
   placeholderStyle: {
     fontSize: 14,
-    fontFamily:'NotoSansMono-Regular'
+    fontFamily: "NotoSansMono-Regular",
   },
 
   selectedTextStyle: {
     fontSize: 16,
-    fontFamily:'NotoSansMono-Regular'
+    fontFamily: "NotoSansMono-Regular",
   },
 
   iconStyle: {
@@ -100,7 +108,7 @@ const styles = StyleSheet.create({
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
-    fontFamily:'NotoSansMono-Regular'
+    fontFamily: "NotoSansMono-Regular",
   },
 
   inputTextStyle: {
@@ -110,5 +118,4 @@ const styles = StyleSheet.create({
   itemTextStyle: {
     fontFamily: "NotoSansMono-Regular",
   },
-
 });

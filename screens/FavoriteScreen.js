@@ -1,42 +1,51 @@
-import React from 'react';
-import { StyleSheet, Text, SafeAreaView, View, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
-import Artwork from '../components/Artwork';
-import ButtonComponent from '../components/ButtonComponent';
+import React from "react";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  View,
+  TouchableOpacity,
+  Dimensions,
+  ScrollView,
+} from "react-native";
+import Artwork from "../components/Artwork";
+import ButtonComponent from "../components/ButtonComponent";
 import Header from "../components/Header";
-import { removeAllFavorites } from '../reducers/favorites';
-import { useDispatch, useSelector } from 'react-redux';
+import { removeAllFavorites } from "../reducers/favorites";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function FavoriteScreen({  navigation }) {
+export default function FavoriteScreen({ navigation }) {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.value);
 
-  let favoritesArtworks = <Text style={styles.noFavText}>No favorites yet</Text>;
+  let favoritesArtworks = (
+    <Text style={styles.noFavText}>No favorites yet</Text>
+  );
   let removeFavorites;
   if (favorites.length > 0) {
     favoritesArtworks = favorites.map((data, i) => {
       const handleArtPress = () => {
         console.log("click art");
-        navigation.navigate('Artwork', {...data})
+        navigation.navigate("Artwork", { ...data });
       };
 
       return (
         <TouchableOpacity key={i} onPress={() => handleArtPress()}>
-        <Artwork
-          key={i}
-          image={data.image}
-          author={data.author}
-          title={data.title}
-          cardStyle={styles.favoriteCard}
-          imageStyle={styles.favoriteImage}
-          textStyle={styles.favoriteText} 
-          authorStyle={styles.favoriteAuthorText} 
-          titleStyle={styles.favoriteTitleText} 
-          textContainerStyle={styles.favoriteTextContainer}          
-          isFavorite
-          removeFromFavorites={true}
-                    showLabels={false}
-
-        />
+          <Artwork
+            key={i}
+            image={data.image}
+            author={data.author}
+            title={data.title}
+            cardStyle={styles.favoriteCard}
+            imageStyle={styles.favoriteImage}
+            textStyle={styles.favoriteText}
+            authorStyle={styles.favoriteAuthorText}
+            titleStyle={styles.favoriteTitleText}
+            textContainerStyle={styles.favoriteTextContainer}
+            isFavorite
+            removeFromFavorites={true}
+            showLabels={false}
+          />
         </TouchableOpacity>
       );
     });
@@ -46,10 +55,12 @@ export default function FavoriteScreen({  navigation }) {
     };
 
     removeFavorites = (
-      <ButtonComponent onPress={handleRemoveAllFavorites} buttonText='Delete all Favorites' style={styles.deleteButton}/>
+      <ButtonComponent
+        onPress={handleRemoveAllFavorites}
+        buttonText="Delete all Favorites"
+        style={styles.deleteButton}
+      />
     );
-
-
   }
 
   return (
@@ -60,9 +71,7 @@ export default function FavoriteScreen({  navigation }) {
           {favoritesArtworks}
         </ScrollView>
       </View>
-      <View style={styles.removeFavoritesBox}>
-        {removeFavorites}
-      </View>
+      <View style={styles.removeFavoritesBox}>{removeFavorites}</View>
     </SafeAreaView>
   );
 }
@@ -71,13 +80,13 @@ const styles = StyleSheet.create({
   favoriteContainer: {
     backgroundColor: "white",
     alignItems: "center",
-    justifyContent: 'center',
-    height: '100%',
+    justifyContent: "center",
+    height: "100%",
   },
 
-  noFavText:{
-    alignItems: 'center',
-    justifyContent: 'center',
+  noFavText: {
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   favoriteCard: {
@@ -87,27 +96,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: Dimensions.get("window").width * 0.6,
-    aspectRatio: 0.78, 
+    aspectRatio: 0.78,
     margin: 0.5,
     padding: 10,
-    borderColor: 'black',
-    borderWidth: 1
+    borderColor: "black",
+    borderWidth: 1,
   },
-  
+
   scrollableContent: {
-    display: 'flex',
+    display: "flex",
     flex: 1,
     marginBottom: 65,
     backgroundColor: "white",
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   favoriteArtworksBox: {
     // display: 'flex',
     // flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     flexDirection: "row",
     flexWrap: "wrap",
   },
@@ -140,7 +149,7 @@ const styles = StyleSheet.create({
   },
 
   removeFavoritesBox: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 10,
     marginBottom: 5,
   },

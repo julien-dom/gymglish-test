@@ -106,8 +106,8 @@ export default function HomeScreen({ navigation }) {
           cardStyle={styles.homeCard}
           imageStyle={styles.homeImage}
           textStyle={styles.homeText}
-          authorStyle={styles.authorText} 
-          titleStyle={styles.titleText} 
+          authorStyle={styles.authorText}
+          titleStyle={styles.titleText}
           textContainerStyle={styles.homeTextContainer}
           showLabels={false}
           // isFavorite={isFavorite}
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: Dimensions.get("window").width * 0.49,
-    aspectRatio: 0.78, 
+    aspectRatio: 0.78,
     margin: 0.5,
     padding: 5,
   },

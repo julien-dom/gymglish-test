@@ -46,36 +46,35 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
     <SafeAreaView style={styles.artworkContainer}>
       <Header />
       <TouchableOpacity
-        onPress={()=>navigation.goBack()}
+        onPress={() => navigation.goBack()}
         style={styles.angleLeft}
       >
         <FontAwesome name={"angle-left"} size={40} color={"black"} />
       </TouchableOpacity>
       <View style={styles.artworkBox}>
-      <Artwork
-        image={data.image}
-        author={data.author}
-        title={data.title}
-        technique={data.technique}
-        type={data.type}
-        description={data.description}
-        department={data.department}
-        funFact={data.funFact}
-        cardStyle={styles.artworkCard}
-        imageStyle={styles.artworkImage}
-        textStyle={styles.artworkText}
-        textContainerStyle={styles.artworkTextContainer}
-        isFavorite={isFavorite}
-        
-      />
+        <Artwork
+          image={data.image}
+          author={data.author}
+          title={data.title}
+          technique={data.technique}
+          type={data.type}
+          description={data.description}
+          department={data.department}
+          funFact={data.funFact}
+          cardStyle={styles.artworkCard}
+          imageStyle={styles.artworkImage}
+          textStyle={styles.artworkText}
+          textContainerStyle={styles.artworkTextContainer}
+          isFavorite={isFavorite}
+        />
       </View>
       <View style={styles.buttonBox}>
-      <ButtonComponent
-        buttonText={buttonText}
-        isFavorite={isFavorite}
-        onPress={handleFavorite}
-        icon="heart"
-      />
+        <ButtonComponent
+          buttonText={buttonText}
+          isFavorite={isFavorite}
+          onPress={handleFavorite}
+          icon="heart"
+        />
       </View>
     </SafeAreaView>
   );
@@ -85,8 +84,8 @@ const styles = StyleSheet.create({
   artworkContainer: {
     backgroundColor: "white",
     alignItems: "center",
-    justifyContent: 'center',
-    height: '100%',
+    justifyContent: "center",
+    height: "100%",
   },
 
   angleLeft: {
@@ -131,11 +130,11 @@ const styles = StyleSheet.create({
 
   artworkTextContainer: {
     alignSelf: "flex-start",
-    height: '100%'
+    height: "100%",
   },
 
   buttonBox: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 20,
     marginBottom: 10,
   },

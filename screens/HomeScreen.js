@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
+  View,
   StyleSheet,
   SafeAreaView,
   ScrollView,
@@ -18,45 +19,45 @@ export default function HomeScreen({ navigation }) {
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [filteredArtworks, setFilteredArtworks] = useState([]);
 
-  // variable crée pour sortir deux auteurs masculins présents dans l'API malgré le tag female_artist 
-  const excludedAuthors = ["Peter", "Henri"];
+  // variable crée pour sortir 4 auteurs masculins présents dans l'API malgré le tag female_artist
+  const excludedAuthors = ["Peter", "Henri", "Matthew", "Master"];
 
   useEffect(() => {
     fetch(
-      "https://openaccess-api.clevelandart.org/api/artworks/?has_image=1&limit=50&female_artists=none"
+      "https://openaccess-api.clevelandart.org/api/artworks/?has_image=1&limit=100&female_artists=none"
     )
       .then((response) => response.json())
       .then((data) => {
         const formatedData = data.data
-        // filtre pour retirer les deux auteurs masculins
-        .filter((artwork) => {
-          const author = artwork.creators[0].description.toLowerCase();
-          return !excludedAuthors.some((excludedAuthor) =>
-            author.includes(excludedAuthor.toLowerCase())
-          );
-        })        
-        .map((artwork) => {
-          let author = artwork.creators[0].description;
-          let date = artwork.creation_date;
-          let title = artwork.title;
-          let image = artwork.images.web.url;
-          let technique = artwork.technique;
-          let type = artwork.type;
-          let description = artwork.wall_description;
-          let funFact = artwork.fun_fact;
-          let department = artwork.department;
-          return {
-            author,
-            date,
-            title,
-            image,
-            technique,
-            type,
-            description,
-            funFact,
-            department,
-          };
-        });
+          // filtre pour retirer les quatre auteurs masculins
+          .filter((artwork) => {
+            const author = artwork.creators[0].description.toLowerCase();
+            return !excludedAuthors.some((excludedAuthor) =>
+              author.includes(excludedAuthor.toLowerCase())
+            );
+          })
+          .map((artwork) => {
+            let author = artwork.creators[0].description;
+            let date = artwork.creation_date;
+            let title = artwork.title;
+            let image = artwork.images.web.url;
+            let technique = artwork.technique;
+            let type = artwork.type;
+            let description = artwork.wall_description;
+            let funFact = artwork.fun_fact;
+            let department = artwork.department;
+            return {
+              author,
+              date,
+              title,
+              image,
+              technique,
+              type,
+              description,
+              funFact,
+              department,
+            };
+          });
 
         // recuperer les departements pour les label du dropdown
         const departmentsData = data.data.map((artwork) => {
@@ -70,16 +71,15 @@ export default function HomeScreen({ navigation }) {
       });
   }, []);
 
-
-    // Obtenir les catégories uniques et les mettre au format pour le dropdown
-    const uniqueDepartments = [...new Set(departments.map((e) => e.department))];
-    const departmentsDropdown = [
-      { label: "All Departments", value: null },
-      ...uniqueDepartments.map((data, i) => ({
-        label: data,
-        value: data,
-      })),
-    ];
+  // Obtenir les catégories uniques et les mettre au format pour le dropdown
+  const uniqueDepartments = [...new Set(departments.map((e) => e.department))];
+  const departmentsDropdown = [
+    { label: "All Departments", value: null },
+    ...uniqueDepartments.map((data, i) => ({
+      label: data,
+      value: data,
+    })),
+  ];
 
   // useEffect effectif lors de l'utilisation de la dropdown
   useEffect(() => {
@@ -134,7 +134,12 @@ export default function HomeScreen({ navigation }) {
         selectedDepartment={selectedDepartment}
         onDepartmentChange={handleDepartmentChange}
       />
-      <ScrollView contentContainerStyle={styles.homeArtworksBox}>
+      <ScrollView
+        contentContainerStyle={[
+          styles.homeArtworksBox,
+          { paddingBottom: "40%" },
+        ]}
+      >
         {artworks}
       </ScrollView>
     </SafeAreaView>
@@ -154,7 +159,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: Dimensions.get("window").width * 0.49,
-    aspectRatio: 0.78,
+    aspectRatio: 0.73,
     margin: 0.5,
     padding: 5,
   },
@@ -179,12 +184,15 @@ const styles = StyleSheet.create({
 
   authorText: {
     fontFamily: "NotoSansMono-Bold",
-    fontSize: 12,
+    fontSize: 11,
+    textAlign: 'left'
   },
 
   titleText: {
-    fontSize: 12,
+    fontSize: 11,
     fontFamily: "NotoSansMono-Regular",
+    textAlign: 'left'
+
   },
 
   homeTitle: {

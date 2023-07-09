@@ -19,12 +19,12 @@ export default function HomeScreen({ navigation }) {
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [filteredArtworks, setFilteredArtworks] = useState([]);
 
-  // variable crée pour sortir 4 auteurs masculins présents dans l'API malgré le tag female_artist
-  const excludedAuthors = ["Peter", "Henri", "Matthew", "Master"];
+  // variable crée pour sortir auteurs masculins ou images mauvaises présents dans l'API malgré le tag female_artist
+  const excludedAuthors = ["Peter", "Henri", "Matthew", "Master", "Edith", "Paula", "Käthe", "Frances"];
 
   useEffect(() => {
     fetch(
-      "https://openaccess-api.clevelandart.org/api/artworks/?has_image=1&limit=100&female_artists=none"
+      "https://openaccess-api.clevelandart.org/api/artworks/?has_image=1&limit=130&female_artists=none"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
     aspectRatio: 0.73,
     margin: 0.5,
     padding: 5,
+    
   },
 
   homeArtworksBox: {

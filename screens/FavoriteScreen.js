@@ -19,7 +19,7 @@ export default function FavoriteScreen({ navigation }) {
   const favorites = useSelector((state) => state.favorites.value);
 
   let favoritesArtworks = (
-    <Text style={styles.noFavText}>No favorites yet</Text>
+    <Text style={styles.noFavText}>Your Favorites list is empty</Text>
   );
   let removeFavorites;
   if (favorites.length > 0) {
@@ -87,6 +87,8 @@ const styles = StyleSheet.create({
   noFavText: {
     alignItems: "center",
     justifyContent: "center",
+    fontFamily: "NotoSansMono-Regular",
+    fontSize: 16,
   },
 
   favoriteCard: {
@@ -97,15 +99,24 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: Dimensions.get("window").width * 0.6,
     aspectRatio: 0.78,
-    margin: 0.5,
+    margin: 10,
     padding: 10,
-    borderColor: "black",
-    borderWidth: 1,
+    // borderWidth: 0.2,
+    borderRadius: 10,
+    shadowColor: "#000000",
+    shadowOffset: {
+    width: 2,
+    height: 2,
+},
+    shadowOpacity:  0.25,
+    shadowRadius: 4,
+    elevation: 4
   },
 
   scrollableContent: {
     display: "flex",
     flex: 1,
+    marginTop: 10,
     marginBottom: 65,
     backgroundColor: "white",
     justifyContent: "center",

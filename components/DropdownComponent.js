@@ -109,19 +109,23 @@ const styles = StyleSheet.create({
 
   inputSearchStyle: {
     height: 40,
-    fontSize: 16,
+    fontSize: 12,
     fontFamily: "NotoSansMono-Regular",
   },
 
   inputTextStyle: {
     fontFamily: "NotoSansMono-Regular",
+    fontSize: 12,
   },
 
   itemTextStyle: {
     fontFamily: "NotoSansMono-Regular",
+    fontSize: 12,
   },
 
   buttonTextStyle:{
     fontFamily: "NotoSansMono-Regular",
+    fontSize: 12,
+
   }
 });

@@ -103,7 +103,7 @@ export default function Artwork({
           onPress={handleRemoveFavorite}
           style={styles.removeFavoriteButton}
         >
-          <FontAwesomeIcon icon={faTimes} size={18} color="black" />
+          <FontAwesomeIcon icon={faTimes} size={20} color="black" />
         </TouchableOpacity>
       )}
     </View>

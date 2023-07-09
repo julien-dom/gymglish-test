@@ -9,7 +9,7 @@ export default function DropdownComponent({
 }) {
   const [value, setValue] = useState(selectedDepartment);
   const [isFocus, setIsFocus] = useState(false);
-
+  
   const renderLabel = () => {
     if (value || isFocus) {
       return (
@@ -40,6 +40,7 @@ export default function DropdownComponent({
         ]}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
+        itemTextStyle={styles.inputTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={styles.iconStyle}
         data={departments}
@@ -118,4 +119,8 @@ const styles = StyleSheet.create({
   itemTextStyle: {
     fontFamily: "NotoSansMono-Regular",
   },
+
+  buttonTextStyle:{
+    fontFamily: "NotoSansMono-Regular",
+  }
 });

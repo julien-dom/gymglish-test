@@ -1,5 +1,7 @@
 //ajout de la typo Graycliff-CT
 import React, { useCallback } from 'react';
+import {LogBox} from 'react-native';
+
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 SplashScreen.preventAutoHideAsync();

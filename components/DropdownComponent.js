@@ -19,10 +19,10 @@ export default function DropdownComponent ({ departments, selectedDepartment, on
     return null;
   };
 
-  const handleDropdownChange = (item) => {
-    setValue(item.value);
+  const handleDropdownChange = (e) => {
+    setValue(e.value);
     setIsFocus(false);
-    onDepartmentChange(item.value);
+    onDepartmentChange(e.value);
   };
 
   return (
@@ -104,6 +104,10 @@ const styles = StyleSheet.create({
   },
 
   inputTextStyle: {
+    fontFamily: "NotoSansMono-Regular",
+  },
+
+  itemTextStyle: {
     fontFamily: "NotoSansMono-Regular",
   },
 

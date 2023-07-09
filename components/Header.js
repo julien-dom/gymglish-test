@@ -1,4 +1,6 @@
 import React from "react";
+import { Image } from 'expo-image';
+
 import {
   StyleSheet,
   Text,
@@ -12,9 +14,13 @@ import {
 export default function Header() {
   return (
     <View style={styles.headerContainer}>
-      <View style={styles.titleBox}>
+      {/* <View style={styles.titleBox}>
         <Text style={styles.headerTitle}>Women In Art</Text>
-      </View>
+      </View> */}
+      <Image
+        source={require('../assets/logo.png')} 
+        style={styles.logo}
+      />
     </View>
   );
 }
@@ -28,8 +34,8 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width * 1,
     borderBottomColor: "black",
     borderBottomWidth: 0.3,
-    padding: 10,
-    marginBottom: 5
+    padding: 5,
+    marginBottom: 5,
   },
 
   titleBox: {
@@ -46,5 +52,11 @@ const styles = StyleSheet.create({
 
   textAlignBottom: {
     textAlignVertical: 'bottom',
-  }
+  },
+
+  logo:{
+  height: '70%',
+  // ratio: 0.5,
+  contentFit: "contain",
+}
 });

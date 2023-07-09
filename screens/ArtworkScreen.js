@@ -1,3 +1,4 @@
+import React from "react";
 import {
   StyleSheet,
   View,
@@ -5,16 +6,16 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
 import Artwork from "../components/Artwork";
 import Header from "../components/Header";
-
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import ButtonComponent from "../components/ButtonComponent";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addFavoriteToStore,
   removeFavoriteFromStore,
 } from "../reducers/favorites";
-import ButtonComponent from "../components/ButtonComponent";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
 
 export default function ArtworkScreen({ navigation, route: { params: data } }) {
   const favorites = useSelector((state) => state.favorites.value);
@@ -31,11 +32,6 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
       dispatch(addFavoriteToStore(data));
     }
   };
-
-  let iconStyle = {};
-  if (isFavorite) {
-    iconStyle = { color: "#2F9599" };
-  }
 
   let buttonText = isFavorite ? "Remove from Favorites" : "Add to Favorites";
 
@@ -92,7 +88,8 @@ const styles = StyleSheet.create({
   },
 
   artworkBox: {
-    height: "90%"
+    height: "90%",
+    paddingBottom: 30
   },
 
   artworkCard: {

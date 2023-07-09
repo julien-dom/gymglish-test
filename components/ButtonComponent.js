@@ -7,6 +7,7 @@ export default function ButtonComponent({
   onPress,
   icon,
 }) {
+  // changer texte, style et icone grance aux props
   const buttonTextStyle = isFavorite
     ? { color: "#2F9599", fontFamily: "NotoSansMono-Regular" }
     : { color: "black", fontFamily: "NotoSansMono-Regular" };
@@ -15,7 +16,7 @@ export default function ButtonComponent({
   return (
     <Button
       icon={buttonIcon}
-      labelStyle={buttonTextStyle} // change couleur icone et texte
+      labelStyle={buttonTextStyle}
       mode="elevated"
       onPress={onPress}
     >

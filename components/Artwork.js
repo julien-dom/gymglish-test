@@ -6,11 +6,11 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Image } from "expo-image";
 import { useDispatch } from "react-redux";
 import { removeFavoriteFromStore } from "../reducers/favorites";
-import { Image } from "expo-image";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function Artwork({
   image,
@@ -32,6 +32,7 @@ export default function Artwork({
   funFact,
   showLabels = true,
 }) {
+  
   const dispatch = useDispatch();
 
   const handleRemoveFavorite = () => {

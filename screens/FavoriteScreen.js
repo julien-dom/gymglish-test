@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
     aspectRatio: 0.78,
     margin: 10,
     padding: 10,
-    // borderWidth: 0.2,
     borderRadius: 10,
     shadowColor: "#000000",
     shadowOffset: {
@@ -124,8 +123,6 @@ const styles = StyleSheet.create({
   },
 
   favoriteArtworksBox: {
-    // display: 'flex',
-    // flex: 1,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
@@ -133,8 +130,7 @@ const styles = StyleSheet.create({
   },
 
   favoriteImage: {
-    width: "90%",
-    // height: '50%',
+    width: "85%",
     aspectRatio: 1,
     borderRadius: 10,
     contentFit: "contain",

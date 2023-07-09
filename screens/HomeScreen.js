@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import {
-  View,
   StyleSheet,
   SafeAreaView,
   ScrollView,
@@ -11,9 +9,9 @@ import {
 import Artwork from "../components/Artwork";
 import DropdownComponent from "../components/DropdownComponent";
 import Header from "../components/Header";
+import { useEffect, useState } from "react";
 
 export default function HomeScreen({ navigation }) {
-  const favorites = useSelector((state) => state.favorites.value);
   const [artworksData, setArtworksData] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
@@ -59,7 +57,7 @@ export default function HomeScreen({ navigation }) {
             };
           });
 
-        // recuperer les departements pour les label du dropdown
+        // recuperer les departements pour les labels du dropdown
         const departmentsData = data.data.map((artwork) => {
           let department = artwork.department;
           return {
@@ -120,7 +118,6 @@ export default function HomeScreen({ navigation }) {
           titleStyle={styles.titleText}
           textContainerStyle={styles.homeTextContainer}
           showLabels={false}
-          // isFavorite={isFavorite}
         />
       </TouchableOpacity>
     );
@@ -193,7 +190,6 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontFamily: "NotoSansMono-Regular",
     textAlign: 'left'
-
   },
 
   homeTitle: {

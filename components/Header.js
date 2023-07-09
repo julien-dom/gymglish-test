@@ -1,6 +1,4 @@
 import React from "react";
-import { Image } from "expo-image";
-
 import {
   StyleSheet,
   View,
@@ -15,7 +13,6 @@ export default function Header() {
         <Text style={styles.headerTitle}>Art by Women</Text>
         <Text style={styles.headerSubTitle}>The Cleveland Museum of Art</Text>
         </View>
-      {/* <Image source={require("../assets/logo.png")} style={styles.logo} /> */}
     </View>
   );
 }
@@ -34,16 +31,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
 
-  // logo: {
-  //   height: "70%",
-  //   contentFit: "contain",
-  // },
-
   textBox:{
     display:'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    // height: '90%',
   },
 
   headerTitle: {

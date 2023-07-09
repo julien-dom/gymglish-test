@@ -82,7 +82,7 @@ export default function Artwork({
 
       {isFavorite && removeFromFavorites && (
         <TouchableOpacity onPress={handleRemoveFavorite} style={styles.removeFavoriteButton}>
-          <FontAwesomeIcon icon={faTimes} size={18} color="#E9BE59" />
+          <FontAwesomeIcon icon={faTimes} size={18} color="black" />
         </TouchableOpacity>
       )}
     </View>

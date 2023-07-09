@@ -46,7 +46,7 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
     <SafeAreaView style={styles.artworkContainer}>
       <Header />
       <TouchableOpacity
-        onPress={() => navigation.navigate("Home")}
+        onPress={()=>navigation.goBack()}
         style={styles.angleLeft}
       >
         <FontAwesome name={"angle-left"} size={40} color={"black"} />
@@ -66,6 +66,7 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
         textStyle={styles.artworkText}
         textContainerStyle={styles.artworkTextContainer}
         isFavorite={isFavorite}
+        
       />
       </View>
       <View style={styles.buttonBox}>

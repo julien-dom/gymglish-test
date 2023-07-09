@@ -34,6 +34,8 @@ export default function FavoriteScreen({  navigation }) {
           textContainerStyle={styles.favoriteTextContainer}          
           isFavorite
           removeFromFavorites={true}
+                    showLabels={false}
+
         />
         </TouchableOpacity>
       );
@@ -74,7 +76,8 @@ const styles = StyleSheet.create({
   },
 
   noFavText:{
-
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   favoriteCard: {
@@ -86,7 +89,9 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width * 0.6,
     aspectRatio: 0.78, 
     margin: 0.5,
-    padding: 5,
+    padding: 10,
+    borderColor: 'black',
+    borderWidth: 1
   },
   
   scrollableContent: {
@@ -99,13 +104,17 @@ const styles = StyleSheet.create({
   },
 
   favoriteArtworksBox: {
+    // display: 'flex',
+    // flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
     flexDirection: "row",
     flexWrap: "wrap",
   },
 
   favoriteImage: {
-    width: "95%",
+    width: "90%",
+    // height: '50%',
     aspectRatio: 1,
     borderRadius: 10,
     contentFit: "contain",
@@ -113,7 +122,7 @@ const styles = StyleSheet.create({
   },
 
   favoriteTextContainer: {
-    width: "95%",
+    width: "90%",
   },
 
   favoriteAuthorText: {

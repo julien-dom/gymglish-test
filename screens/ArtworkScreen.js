@@ -1,9 +1,7 @@
 import {
   StyleSheet,
-  Text,
   View,
   SafeAreaView,
-  ScrollView,
   TouchableOpacity,
   Dimensions,
 } from "react-native";
@@ -93,33 +91,25 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 
-  // artworkBox:{
-  //   display: 'flex',
-  //   flex: 1,
-  //   // marginBottom: 60,
-  //   backgroundColor: "white",
-  //   justifyContent: 'center',
-  //   alignItems: 'center'
-  // },
+  artworkBox: {
+    height: "90%"
+  },
 
   artworkCard: {
     display: "flex",
     flexDirection: "column",
     backgroundColor: "white",
     alignItems: "center",
-    // justifyContent: "center",
     width: Dimensions.get("window").width * 1,
-    // aspectRatio: 1, // ration largeur/hauteur de 1 pour card carrée
     height: "auto",
     maxHeight: "90%",
-    marginBottom: 10,
     padding: 10,
   },
 
   artworkImage: {
     width: "90%",
-    aspectRatio: 1, // conserve ratio image
-    marginBottom: 5,
+    aspectRatio: 1.2,
+    marginBottom: 10,
     contentFit: "contain",
   },
 
@@ -131,6 +121,8 @@ const styles = StyleSheet.create({
   artworkTextContainer: {
     alignSelf: "flex-start",
     height: "100%",
+    marginBottom: 10,
+    padding: 10,
   },
 
   buttonBox: {

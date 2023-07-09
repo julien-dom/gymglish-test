@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
 
   textBox: {
-    marginBottom: 5,
+    marginBottom: 7,
   },
 
   label: {
@@ -126,5 +126,6 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 16,
+    textAlign: 'justify'
   },
 });

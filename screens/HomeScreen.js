@@ -106,8 +106,8 @@ export default function HomeScreen({ navigation }) {
           cardStyle={styles.homeCard}
           imageStyle={styles.homeImage}
           textStyle={styles.homeText}
-          authorStyle={styles.authorText} // Add artistStyle prop
-          titleStyle={styles.titleText} // Add titleStyle prop
+          authorStyle={styles.authorText} 
+          titleStyle={styles.titleText} 
           textContainerStyle={styles.homeTextContainer}
           showLabels={false}
           // isFavorite={isFavorite}

@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
 
   label: {
     fontFamily: 'NotoSansMono-Bold',
+    fontSize: 16
   },
 
   removeFavoriteButton: {

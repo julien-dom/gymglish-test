@@ -1,10 +1,21 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import Artwork from "../components/Artwork";
 import Header from "../components/Header";
 
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { addFavoriteToStore, removeFavoriteFromStore } from "../reducers/favorites";
+import {
+  addFavoriteToStore,
+  removeFavoriteFromStore,
+} from "../reducers/favorites";
 import ButtonComponent from "../components/ButtonComponent";
 
 export default function ArtworkScreen({ navigation, route: { params: data } }) {
@@ -29,14 +40,18 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
     iconStyle = { color: "#E9BE59" };
   }
 
-  let buttonText = isFavorite ? 'Remove from Favorites' : 'Add to Favorites';
+  let buttonText = isFavorite ? "Remove from Favorites" : "Add to Favorites";
 
   return (
     <SafeAreaView style={styles.artworkContainer}>
-    <Header />
-      <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.angleLeft}>
+      <Header />
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Home")}
+        style={styles.angleLeft}
+      >
         <FontAwesome name={"angle-left"} size={40} color={"black"} />
       </TouchableOpacity>
+      <View style={styles.artworkBox}>
       <Artwork
         image={data.image}
         author={data.author}
@@ -52,50 +67,57 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
         textContainerStyle={styles.artworkTextContainer}
         isFavorite={isFavorite}
       />
-      {/* <View style={styles.favoriteContainer}>
-        <Text>Add to favorite</Text>
-        <TouchableOpacity onPress={() => handleFavorite()}>
-          <FontAwesomeIcon icon={faHeart} size={20} style={iconStyle} />
-        </TouchableOpacity>
-      </View> */}
-      <ButtonComponent buttonText={buttonText}
-  isFavorite={isFavorite}
-  onPress={handleFavorite}/>
+      </View>
+      <View style={styles.buttonBox}>
+      <ButtonComponent
+        buttonText={buttonText}
+        isFavorite={isFavorite}
+        onPress={handleFavorite}
+        icon="heart"
+      />
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-    artworkContainer: {
-    flex: 1,
-    alignItems: "center",
+  artworkContainer: {
     backgroundColor: "white",
-    // justifyContent: "center",
+    alignItems: "center",
+    justifyContent: 'center',
+    height: '100%',
   },
 
-  angleLeft:{
-    alignSelf: 'flex-start',
-    marginLeft: 10
+  angleLeft: {
+    alignSelf: "flex-start",
+    marginLeft: 10,
   },
+
+  // artworkBox:{
+  //   display: 'flex',
+  //   flex: 1,
+  //   // marginBottom: 60,
+  //   backgroundColor: "white",
+  //   justifyContent: 'center',
+  //   alignItems: 'center'
+  // },
 
   artworkCard: {
     display: "flex",
     flexDirection: "column",
-    // borderColor: "black",
-    // borderWidth: 1,
     backgroundColor: "white",
     alignItems: "center",
     // justifyContent: "center",
     width: Dimensions.get("window").width * 1,
     // aspectRatio: 1, // ration largeur/hauteur de 1 pour card carrée
     height: "auto",
-    maxHeight: '80%',
+    maxHeight: "90%",
     marginBottom: 10,
-    padding: 10
+    padding: 10,
   },
 
   artworkImage: {
-    width: "100%",
+    width: "90%",
     aspectRatio: 1, // conserve ratio image
     marginBottom: 5,
     contentFit: "contain",
@@ -103,10 +125,17 @@ const styles = StyleSheet.create({
 
   artworkText: {
     marginBottom: 5,
-    fontFamily: 'NotoSansMono-Regular'
+    fontFamily: "NotoSansMono-Regular",
   },
 
   artworkTextContainer: {
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
+    height: '100%'
+  },
+
+  buttonBox: {
+    position: 'absolute',
+    bottom: 20,
+    marginBottom: 10,
   },
 });

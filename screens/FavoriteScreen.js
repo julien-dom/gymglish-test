@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import Artwork from '../components/Artwork';
 import ButtonComponent from '../components/ButtonComponent';
 import Header from "../components/Header";
@@ -10,7 +10,7 @@ export default function FavoriteScreen({  navigation }) {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.value);
 
-  let favoritesArtworks = <Text>No favorites yet</Text>;
+  let favoritesArtworks = <Text style={styles.noFavText}>No favorites yet</Text>;
   let removeFavorites;
   if (favorites.length > 0) {
     favoritesArtworks = favorites.map((data, i) => {
@@ -29,7 +29,9 @@ export default function FavoriteScreen({  navigation }) {
           cardStyle={styles.favoriteCard}
           imageStyle={styles.favoriteImage}
           textStyle={styles.favoriteText} 
-          textContainerStyle={styles.favoriteTextContainer}
+          authorStyle={styles.favoriteAuthorText} 
+          titleStyle={styles.favoriteTitleText} 
+          textContainerStyle={styles.favoriteTextContainer}          
           isFavorite
           removeFromFavorites={true}
         />
@@ -42,71 +44,95 @@ export default function FavoriteScreen({  navigation }) {
     };
 
     removeFavorites = (
-      <ButtonComponent onPress={handleRemoveAllFavorites} buttonText='Delete all Favorites'/>
+      <ButtonComponent onPress={handleRemoveAllFavorites} buttonText='Delete all Favorites' style={styles.deleteButton}/>
     );
 
 
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-            <Header />      
-      <ScrollView contentContainerStyle={styles.favoriteArtworksBox}>{favoritesArtworks}</ScrollView>
-      {removeFavorites}
+    <SafeAreaView style={styles.favoriteContainer}>
+      <Header />
+      <View style={styles.scrollableContent}>
+        <ScrollView contentContainerStyle={styles.favoriteArtworksBox}>
+          {favoritesArtworks}
+        </ScrollView>
+      </View>
+      <View style={styles.removeFavoritesBox}>
+        {removeFavorites}
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "pink",
+  favoriteContainer: {
+    backgroundColor: "white",
     alignItems: "center",
-    // justifyContent: "center",
+    justifyContent: 'center',
+    height: '100%',
+  },
+
+  noFavText:{
+
   },
 
   favoriteCard: {
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+    width: Dimensions.get("window").width * 0.6,
+    aspectRatio: 0.78, 
+    margin: 0.5,
+    padding: 5,
+  },
+  
+  scrollableContent: {
     display: 'flex',
-    flexDirection: 'column',
-    borderColor: 'black',
-    borderWidth: 1,
-    backgroundColor: 'yellow',
-    alignItems: 'center',
+    flex: 1,
+    marginBottom: 65,
+    backgroundColor: "white",
     justifyContent: 'center',
-    width: Dimensions.get('window').width * 0.7, 
-    aspectRatio: 0.8, // ration largeur/hauteur de 1 pour card carrée
-    // height: "auto",
-    // maxHeight: '80%',
-    marginBottom: 10,
-    padding: 10
+    alignItems: 'center'
   },
 
   favoriteArtworksBox: {
-    backgroundColor: "green",
-    flexDirection: 'column',
-    // flexWrap: 'wrap',
     justifyContent: 'center',
-    // maxHeight: Dimensions.get('window').height * 0.8,
-
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
 
   favoriteImage: {
-    width: "100%",
-    aspectRatio: 1, // conserve ratio image
-    marginBottom: 5,
+    width: "95%",
+    aspectRatio: 1,
+    borderRadius: 10,
     contentFit: "contain",
+    marginBottom: 5,
   },
 
-  favoriteText:{
+  favoriteTextContainer: {
+    width: "95%",
+  },
+
+  favoriteAuthorText: {
+    fontFamily: "NotoSansMono-Bold",
     fontSize: 12,
   },
 
-  favoriteTextContainer:{
-    width: '75%',
+  favoriteTitleText: {
+    fontSize: 12,
+    fontFamily: "NotoSansMono-Regular",
   },
 
-  scrollContainer: {
-    flex: 1,
-    maxHeight: '90%',
-    marginBottom: 10,
+  favoriteTitle: {
+    fontFamily: "NotoSansMono-Bold",
+  },
+
+  removeFavoritesBox: {
+    position: 'absolute',
+    bottom: 10,
+    marginBottom: 5,
   },
 });

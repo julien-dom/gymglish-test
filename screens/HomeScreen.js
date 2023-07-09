@@ -17,7 +17,7 @@ export default function HomeScreen({ navigation }) {
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [filteredArtworks, setFilteredArtworks] = useState([]);
 
-  // variable crée pour sortir auteurs masculins ou images mauvaises présents dans l'API malgré le tag female_artist
+  // variable crée pour sortir auteurs masculins présents dans l'API malgré le tag female_artist ou images de mauvaises qualités 
   const excludedAuthors = ["Peter", "Henri", "Matthew", "Master", "Edith", "Paula", "Käthe", "Frances"];
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function HomeScreen({ navigation }) {
       .then((response) => response.json())
       .then((data) => {
         const formatedData = data.data
-          // filtre pour retirer les quatre auteurs masculins
+          // filtre pour retirer les excludedAuthors
           .filter((artwork) => {
             const author = artwork.creators[0].description.toLowerCase();
             return !excludedAuthors.some((excludedAuthor) =>
@@ -79,7 +79,7 @@ export default function HomeScreen({ navigation }) {
     })),
   ];
 
-  // useEffect effectif lors de l'utilisation de la dropdown
+  // useEffect qui se déclenche lors de l'utilisation de la dropdown
   useEffect(() => {
     if (selectedDepartment) {
       const filteredArtworks = artworksData.filter(
@@ -96,7 +96,7 @@ export default function HomeScreen({ navigation }) {
   };
 
   const artworks = filteredArtworks.map((data, i) => {
-    // Enlever la date du nom de l'auteur pour homepage
+    // Enlever la date du nom de l'auteur pour alléger texte en homepage
     const formattedAuthor = data.author.replace(/\([^()]*\)/g, "").trim();
     const formatedTitle =
       data.title.length > 50 ? data.title.slice(0, 50) + "..." : data.title;
@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
   homeContainer: {
     backgroundColor: "white",
     alignItems: "center",
+    paddingTop: Platform.OS === 'android' ? 25 : 0
   },
 
   homeCard: {

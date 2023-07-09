@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 
   dropdown: {
     height: 50,
-    width: 200,
+    width: 250,
     borderColor: "gray",
     borderWidth: 0.5,
     borderRadius: 8,
@@ -87,17 +87,18 @@ const styles = StyleSheet.create({
     top: 8,
     zIndex: 999,
     paddingHorizontal: 8,
-    fontSize: 12,
+    fontSize: 10,
     fontFamily: "NotoSansMono-Regular",
   },
 
   placeholderStyle: {
     fontSize: 14,
     fontFamily: "NotoSansMono-Regular",
+    textAlign:'center'
   },
 
   selectedTextStyle: {
-    fontSize: 16,
+    fontSize: 13,
     fontFamily: "NotoSansMono-Regular",
   },
 

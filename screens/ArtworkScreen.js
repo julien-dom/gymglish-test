@@ -16,7 +16,6 @@ import {
 } from "../reducers/favorites";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-
 export default function ArtworkScreen({ navigation, route: { params: data } }) {
   const favorites = useSelector((state) => state.favorites.value);
   const dispatch = useDispatch();
@@ -42,7 +41,7 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
         onPress={() => navigation.goBack()}
         style={styles.angleLeft}
       >
-        <FontAwesome name={"angle-left"} size={40} color={"black"} />
+        <FontAwesome name={"angle-left"} size={42} color={"black"} />
       </TouchableOpacity>
       <View style={styles.artworkBox}>
         <Artwork
@@ -58,6 +57,7 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
           cardStyle={styles.artworkCard}
           imageStyle={styles.artworkImage}
           textStyle={styles.artworkText}
+          authorStyle={styles.authorText}
           textContainerStyle={styles.artworkTextContainer}
           isFavorite={isFavorite}
         />
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     height: "100%",
+    paddingTop: Platform.OS === 'android' ? 25 : 0
   },
 
   angleLeft: {
@@ -113,6 +114,10 @@ const styles = StyleSheet.create({
   artworkText: {
     marginBottom: 5,
     fontFamily: "NotoSansMono-Regular",
+  },
+
+  authorText: {
+    textAlign: 'left'
   },
 
   artworkTextContainer: {

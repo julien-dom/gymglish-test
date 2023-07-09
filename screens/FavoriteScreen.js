@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     height: "100%",
+    paddingTop: Platform.OS === 'android' ? 25 : 0
   },
 
   noFavText: {

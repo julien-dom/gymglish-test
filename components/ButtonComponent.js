@@ -8,7 +8,7 @@ export default function ButtonComponent({
   icon,
 }) {
   const buttonTextStyle = isFavorite
-    ? { color: "#E9BE59", fontFamily: "NotoSansMono-Regular" }
+    ? { color: "#2F9599", fontFamily: "NotoSansMono-Regular" }
     : { color: "black", fontFamily: "NotoSansMono-Regular" };
   const buttonIcon = icon === "heart" ? "heart" : "delete";
 

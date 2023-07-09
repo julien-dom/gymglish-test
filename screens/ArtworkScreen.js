@@ -17,7 +17,6 @@ import {
 import ButtonComponent from "../components/ButtonComponent";
 
 export default function ArtworkScreen({ navigation, route: { params: data } }) {
-  console.log("paramsdata", data);
   const favorites = useSelector((state) => state.favorites.value);
   const dispatch = useDispatch();
 
@@ -35,7 +34,7 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
 
   let iconStyle = {};
   if (isFavorite) {
-    iconStyle = { color: "#E9BE59" };
+    iconStyle = { color: "#2F9599" };
   }
 
   let buttonText = isFavorite ? "Remove from Favorites" : "Add to Favorites";
@@ -54,6 +53,7 @@ export default function ArtworkScreen({ navigation, route: { params: data } }) {
           image={data.image}
           author={data.author}
           title={data.title}
+          date={data.date}
           technique={data.technique}
           type={data.type}
           description={data.description}
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
 
   artworkImage: {
     width: "90%",
-    aspectRatio: 1.2,
+    aspectRatio: 1.35,
     marginBottom: 10,
     contentFit: "contain",
   },

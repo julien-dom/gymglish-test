@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faHeart, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { removeFavoriteFromStore } from "../reducers/favorites";
 import { Image } from "expo-image";
@@ -26,6 +26,7 @@ export default function Artwork({
   textContainerStyle,
   technique,
   type,
+  date,
   description,
   department,
   funFact,
@@ -54,6 +55,12 @@ export default function Artwork({
           {showLabels && <Text style={styles.label}>Title</Text>}
           <Text style={[styles.text, textStyle, titleStyle]}>{title}</Text>
         </View>
+        {date && (
+          <View style={styles.textBox}>
+            {showLabels && <Text style={styles.label}>Date</Text>}
+            <Text style={[styles.text, textStyle]}>{date}</Text>
+          </View>
+        )}
         {technique && (
           <View style={styles.textBox}>
             {showLabels && <Text style={styles.label}>Technique</Text>}

@@ -10,9 +10,6 @@ import {
 export default function Header() {
   return (
     <View style={styles.headerContainer}>
-      {/* <View style={styles.titleBox}>
-        <Text style={styles.headerTitle}>Women In Art</Text>
-      </View> */}
       <Image source={require("../assets/logo.png")} style={styles.logo} />
     </View>
   );
@@ -31,25 +28,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 
-  titleBox: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "flex-end",
-  },
-
-  headerTitle: {
-    fontFamily: "NotoSansMono-Bold",
-    fontSize: 24,
-    letterSpacing: 1.5,
-  },
-
-  textAlignBottom: {
-    textAlignVertical: "bottom",
-  },
-
   logo: {
     height: "70%",
-    // ratio: 0.5,
     contentFit: "contain",
   },
 });

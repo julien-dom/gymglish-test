@@ -18,18 +18,28 @@ export default function HomeScreen({ navigation }) {
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [filteredArtworks, setFilteredArtworks] = useState([]);
 
+  // variable crée pour sortir deux auteurs masculins présents dans l'API malgré le tag female_artist 
+  const excludedAuthors = ["Peter", "Henri"];
+
   useEffect(() => {
     fetch(
       "https://openaccess-api.clevelandart.org/api/artworks/?has_image=1&limit=50&female_artists=none"
     )
       .then((response) => response.json())
       .then((data) => {
-        const formatedData = data.data.map((artwork) => {
+        const formatedData = data.data
+        // filtre pour retirer les deux auteurs masculins
+        .filter((artwork) => {
+          const author = artwork.creators[0].description.toLowerCase();
+          return !excludedAuthors.some((excludedAuthor) =>
+            author.includes(excludedAuthor.toLowerCase())
+          );
+        })        
+        .map((artwork) => {
           let author = artwork.creators[0].description;
           let date = artwork.creation_date;
           let title = artwork.title;
           let image = artwork.images.web.url;
-          console.log(image);
           let technique = artwork.technique;
           let type = artwork.type;
           let description = artwork.wall_description;
@@ -48,6 +58,7 @@ export default function HomeScreen({ navigation }) {
           };
         });
 
+        // recuperer les departements pour les label du dropdown
         const departmentsData = data.data.map((artwork) => {
           let department = artwork.department;
           return {
@@ -59,6 +70,18 @@ export default function HomeScreen({ navigation }) {
       });
   }, []);
 
+
+    // Obtenir les catégories uniques et les mettre au format pour le dropdown
+    const uniqueDepartments = [...new Set(departments.map((e) => e.department))];
+    const departmentsDropdown = [
+      { label: "All Departments", value: null },
+      ...uniqueDepartments.map((data, i) => ({
+        label: data,
+        value: data,
+      })),
+    ];
+
+  // useEffect effectif lors de l'utilisation de la dropdown
   useEffect(() => {
     if (selectedDepartment) {
       const filteredArtworks = artworksData.filter(
@@ -74,24 +97,11 @@ export default function HomeScreen({ navigation }) {
     setSelectedDepartment(department);
   };
 
-  // Obtenir les catégories uniques et les mettre au format pour le dropdown
-  const uniqueDepartments = [...new Set(departments.map((e) => e.department))];
-  const departmentsDropdown = [
-    { label: "All Departments", value: null },
-    ...uniqueDepartments.map((data, i) => ({
-      label: data,
-      value: data,
-    })),
-  ];
-
   const artworks = filteredArtworks.map((data, i) => {
-    // const isFavorite = favorites.some(
-    //   (favorite) => favorite.title === data.title
-    // );
+    // Enlever la date du nom de l'auteur pour homepage
     const formattedAuthor = data.author.replace(/\([^()]*\)/g, "").trim();
     const formatedTitle =
       data.title.length > 50 ? data.title.slice(0, 50) + "..." : data.title;
-
     const handleArtPress = () => {
       console.log("click art");
       navigation.navigate("Artwork", { ...data });

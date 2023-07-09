@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   artworkContainer: {
     backgroundColor: "white",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     height: "100%",
   },
 

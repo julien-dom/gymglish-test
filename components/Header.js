@@ -5,12 +5,17 @@ import {
   StyleSheet,
   View,
   Dimensions,
+  Text
 } from "react-native";
 
 export default function Header() {
   return (
     <View style={styles.headerContainer}>
-      <Image source={require("../assets/logo.png")} style={styles.logo} />
+      <View style={styles.textBox}>
+        <Text style={styles.headerTitle}>Art by Women</Text>
+        <Text style={styles.headerSubTitle}>The Cleveland Museum of Art</Text>
+        </View>
+      {/* <Image source={require("../assets/logo.png")} style={styles.logo} /> */}
     </View>
   );
 }
@@ -20,16 +25,36 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
-    height: Dimensions.get("window").height * 0.1,
+    height: Dimensions.get("window").height * 0.08,
     width: Dimensions.get("window").width * 1,
     borderBottomColor: "black",
-    borderBottomWidth: 0.3,
-    padding: 5,
+    borderBottomWidth: 0.4,
+    padding: 10,
     marginBottom: 5,
+    backgroundColor: 'white'
   },
 
-  logo: {
-    height: "70%",
-    contentFit: "contain",
+  // logo: {
+  //   height: "70%",
+  //   contentFit: "contain",
+  // },
+
+  textBox:{
+    display:'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    // height: '90%',
   },
+
+  headerTitle: {
+    color: "black",
+    fontFamily: "NotoSansMono-Bold",
+    fontSize: 22,
+  },
+
+  headerSubTitle:{
+    color: "black",
+    fontFamily: "NotoSansMono-Bold",
+    fontSize: 12,
+  }
 });

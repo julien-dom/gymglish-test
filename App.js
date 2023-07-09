@@ -54,6 +54,8 @@ export default function App() {
     "NotoSansMono-Bold": require("./assets/fonts/NotoSansMono-Bold.ttf"),
     "NotoSansMono-Regular": require("./assets/fonts/NotoSansMono-Regular.ttf"),
     "NotoSansMono-Light": require("./assets/fonts/NotoSansMono-Light.ttf"),
+    "NotoSansMono-Black": require("./assets/fonts/NotoSansMono-Black.ttf"),
+
   });
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {

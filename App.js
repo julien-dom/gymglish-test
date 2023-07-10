@@ -1,15 +1,15 @@
 import React, { useCallback } from "react";
+import HomeScreen from "./screens/HomeScreen";
+import FavoriteScreen from "./screens/FavoriteScreen";
+import ArtworkScreen from "./screens/ArtworkScreen";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 SplashScreen.preventAutoHideAsync();
 import { StatusBar } from "expo-status-bar";
-import HomeScreen from "./screens/HomeScreen";
-import FavoriteScreen from "./screens/FavoriteScreen";
-import ArtworkScreen from "./screens/ArtworkScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -18,23 +18,20 @@ import favorites from "./reducers/favorites";
 const store = configureStore({
   reducer: { favorites },
 });
+
 const Stack = createNativeStackNavigator();
-
 const Tab = createBottomTabNavigator();
-
 const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
           let iconName = "";
-
           if (route.name === "Home") {
             iconName = "home";
           } else if (route.name === "Favorite") {
             iconName = "heart";
           }
-
           return <FontAwesome name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: "#2F9599",
@@ -55,7 +52,6 @@ export default function App() {
     "NotoSansMono-Regular": require("./assets/fonts/NotoSansMono-Regular.ttf"),
     "NotoSansMono-Light": require("./assets/fonts/NotoSansMono-Light.ttf"),
     "NotoSansMono-Black": require("./assets/fonts/NotoSansMono-Black.ttf"),
-
   });
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
@@ -66,10 +62,10 @@ export default function App() {
   if (!fontsLoaded) {
     return null;
   }
+
   return (
     <Provider store={store}>
       <View onLayout={onLayoutRootView}></View>
-
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen

@@ -101,7 +101,6 @@ export default function HomeScreen({ navigation }) {
     const formatedTitle =
       data.title.length > 50 ? data.title.slice(0, 50) + "..." : data.title;
     const handleArtPress = () => {
-      console.log("click art");
       navigation.navigate("Artwork", { ...data });
     };
 
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
   homeContainer: {
     backgroundColor: "white",
     alignItems: "center",
-    paddingTop: Platform.OS === 'android' ? 25 : 0
+    paddingTop: Platform.OS === 'android' ? 30 : 0
   },
 
   homeCard: {

@@ -114,10 +114,12 @@ const styles = StyleSheet.create({
   artworkText: {
     marginBottom: 5,
     fontFamily: "NotoSansMono-Regular",
+    fontSize: 13
   },
 
   authorText: {
-    textAlign: 'left'
+    textAlign: 'left',
+    fontSize: 13
   },
 
   artworkTextContainer: {

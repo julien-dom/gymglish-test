@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   homeContainer: {
     backgroundColor: "white",
     alignItems: "center",
-    paddingTop: Platform.OS === 'android' ? 30 : 0
+    paddingTop: Platform.OS === 'android' ? 50 : 0
   },
 
   homeCard: {

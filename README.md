@@ -19,5 +19,4 @@ L'ArtworkScreen présente plus de détails (technique, fun facts, description pl
 La FavoriteScreen montre les favoris et offre la possibilité de supprimer tous les favoris d'un coup ou individuellement. Les œuvres sont aussi cliquables depuis cette page. 
 Un composant principal (artwork) est utilisé dans chacune des screens avec à chaque fois un style différent et un nombre de données proposé à l'utilisateur variant d'une screen à l'autre.
 
-### Difficultés rencontrées :
-Les images provenant de l'API sont asssez lourdes même en choisissant le format web (temps de chargement des images trop long. Tentative avec FastImage mais abandonnée car non supporté pour Expo Go. Point à améliorer)
+
